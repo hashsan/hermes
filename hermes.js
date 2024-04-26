@@ -7,8 +7,10 @@ function autoSave(caller){
   if(!el) return;
   el.textContent = localStorage.getItem(key)||''
   el.addEventListener('keydown',debounce(()=>{
-    localStorage.setItem(key,el.textContent)
+    const text = el.textContent;
+    localStorage.setItem(key,text)
     el.dataset.time = nowTime() // data-time
+    el.dataset.lines = countLines(text) //data-lines
     if(caller) caller(el)
   },200) )
 
@@ -31,6 +33,20 @@ function autoSave(caller){
     const now = new Date();
     // 時間と分を取得 hh:mm
     return pa(now.getHours()) + ':' + pa(now.getMinutes());
+  }
+
+  function countLines(text) {
+    var count = 0;
+    // 文字列を1文字ずつ走査して、改行文字を見つけたらカウントを増やす
+    for (var i = 0; i < text.length; i++) {
+        if (text[i] === '\n') {
+            count++;
+        }
+    }
+    return count;
+　}
+  function countPages(n){
+    return ~~(n/32) + 1
   }
   ///////////////////////////////////
 }
