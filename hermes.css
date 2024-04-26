@@ -1,0 +1,51 @@
+*{margin:0;padding:0;
+  box-sizing:border-box;}
+
+body{
+  overflow-y:scroll;
+  background:#fafafa;  
+}
+
+main{
+  display:flex;
+  min-height:100vh;
+}
+
+.sticky{
+    position: -webkit-sticky; 
+    /* Safari用のプレフィックス */
+    position: sticky;
+    top: 0; /* 要素が固定される位置を指定 */
+}
+
+.left{
+  position:relative;
+  width:500px;
+  border-right:2px solid #f0f0f0;
+}
+
+.edit{
+  width:500px;
+}
+
+.menu{
+  white-space:pre-wrap;
+  word-break:break-all;
+  padding:1rem;
+  color:#666;
+  font-size:12px;
+}
+
+.edit{
+  position:relative;
+  outline:none;
+  padding:1rem;
+}
+
+.edit::before{
+  position:absolute;
+  bottom:0.5rem;right:0.5rem;
+  color:#aaa;
+  font-size:12px;
+  content:attr(data-time);
+}
