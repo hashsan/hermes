@@ -47,5 +47,5 @@ main{
   bottom:0.5rem;right:0.5rem;
   color:#aaa;
   font-size:12px;
-  content:attr(data-time);
+  content:attr(data-lines)' - 'attr(data-time);
 }
