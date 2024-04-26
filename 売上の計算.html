@@ -10,60 +10,9 @@
 
   <title>CodePen - A Pen by pinkromeo</title>
 
-    <link rel="canonical" href="https://codepen.io/pinkromeo/pen/MWRxbjd">
+  <link rel="canonical" href="https://codepen.io/pinkromeo/pen/MWRxbjd">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  
-  
-<style>
-*{margin:0;padding:0;
-  box-sizing:border-box;}
-body{
-  overflow-y:scroll;
-  background:#fafafa;  
-}
-main{
-  display:flex;
-  min-height:100vh;
-}
-.sticky{
-    position: -webkit-sticky; 
-    /* Safari用のプレフィックス */
-    position: sticky;
-    top: 0; /* 要素が固定される位置を指定 */
-}
-
-.left{
-  position:relative;
-  width:500px;
-  border-right:2px solid #f0f0f0;
-}
-.edit{
-  width:500px;
-}
-
-.menu{
-  white-space:pre-wrap;
-  word-break:break-all;
-  padding:1rem;
-  color:#666;
-  font-size:12px;
-}
-
-.edit{
-  position:relative;
-  outline:none;
-  padding:1rem;
-}
-.edit::before{
-  position:absolute;
-  bottom:0.5rem;right:0.5rem;
-  color:#aaa;
-  font-size:12px;
-  content:attr(data-time);
-}
-</style>
-
+  <link rel="stylesheet" href="./hermes.css">
   
   
   
@@ -79,59 +28,7 @@ main{
 </main>
 <footer></footer>
   
-      <script id="rendered-js" >
-function autoSave(caller){
-  const pureUrl=d=>(d||window.location.href).split('?')[0];
-  const key = pureUrl()
-  const query ='[contenteditable]'  
-  const el = document.querySelector(query)
-  if(!el) return;
-  el.textContent = localStorage.getItem(key)||''
-  el.addEventListener('keydown',debounce(()=>{
-    localStorage.setItem(key,el.textContent)
-    el.dataset.time = nowTime() // data-time
-    if(caller) caller(el)
-  },200) )
-
-  return el
-  ;
-  //////////////////////////////////////
-  function debounce(func, delay) {
-    let timerId;
-    return function(...args) {
-      clearTimeout(timerId);
-      timerId = setTimeout(() => {
-        func.apply(this, args);
-      }, delay);
-    };
-  }
-
-  function nowTime() {
-    const pa = d => d.toString().padStart(2, '0');
-    // 現在の日時を取得
-    const now = new Date();
-    // 時間と分を取得 hh:mm
-    return pa(now.getHours()) + ':' + pa(now.getMinutes());
-  }
-  ///////////////////////////////////
-}
-
-autoSave(makeMenu)
-
-function makeMenu(el){
-  const isShapes = (d) => /^##+/.test(d);  
-  const menu = document.querySelector('.menu')
-  const text = el.textContent;
-  const menuText = text.split('\n')
-    .filter(d=>/^#/.test(d))
-    .map(d=>{
-       return isShapes(d)? '　'+d:d;    
-    }).join('\n')
-  
-  menu.textContent = menuText;
-}
-    </script>
-
+<script src="./hermes.js"></script>
   
 </body>
 
