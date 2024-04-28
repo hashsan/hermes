@@ -1,5 +1,12 @@
+@import url('https://cdn.jsdelivr.net/npm/yakuhanjp@4.0.1/dist/css/yakuhanjp.css');/*墨付き対応*/
+
 *{margin:0;padding:0;
   box-sizing:border-box;}
+
+html{
+  font-family: YakuHanJP,san-serif; /*墨付き対応*/
+}
+  
 
 body{
   overflow-y:scroll;
