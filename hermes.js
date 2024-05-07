@@ -1,5 +1,16 @@
 import "https://hashsan.github.io/writer/writer.js"
 
+  function debounce(func, delay) {
+    let timerId;
+    return function(...args) {
+      clearTimeout(timerId);
+      timerId = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  }
+
+
 function autoSave(caller){
   const pureUrl=d=>(d||window.location.href).split('?')[0];
   const key = pureUrl()
@@ -18,15 +29,6 @@ function autoSave(caller){
   return el
   ;
   //////////////////////////////////////
-  function debounce(func, delay) {
-    let timerId;
-    return function(...args) {
-      clearTimeout(timerId);
-      timerId = setTimeout(() => {
-        func.apply(this, args);
-      }, delay);
-    };
-  }
 
   function nowTime() {
     const pa = d => d.toString().padStart(2, '0');
@@ -58,9 +60,7 @@ path = replaceExtension(path,'.md')
 var w = writer(owner,repo)
 
 autoSave(el=>{
-
-  w.set(path,el.textContent)
-
+  debounce(()=>w.set(path,el.textContent),2000) //debunce hi-times 
   makeMenu(el) 
 })
 
