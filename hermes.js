@@ -60,7 +60,9 @@ path = replaceExtension(path,'.md')
 var w = writer(owner,repo)
 
 autoSave(el=>{
-  debounce(()=>w.set(path,el.textContent),2000) //debunce hi-times 
+  
+  debounce(()=>{ w.set(path,el.textContent) },2000) //debunce hi-times 
+  
   makeMenu(el) 
 })
 
