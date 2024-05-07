@@ -58,10 +58,11 @@ function autoSave(caller){
 var {owner,repo,path} = getGithubInfo(window.location.href);
 path = replaceExtension(path,'.md')
 var w = writer(owner,repo)
+w.set = debounce(w.set,2000)
 
 autoSave(el=>{
   
-  debounce(()=>{ w.set(path,el.textContent) },2000) //debunce hi-times 
+  w.set(path,el.textContent) //debunce hi-times 
   
   makeMenu(el) 
 })
