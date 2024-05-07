@@ -1,3 +1,4 @@
+import "https://hashsan.github.io/writer/writer.js"
 
 function autoSave(caller){
   const pureUrl=d=>(d||window.location.href).split('?')[0];
@@ -51,7 +52,17 @@ function autoSave(caller){
   ///////////////////////////////////
 }
 
-autoSave(makeMenu)
+/////
+var {owner,repo,path} = getGithubInfo(window.location.href);
+path = replaceExtension(path,'.md')
+var w = writer(owner,repo)
+
+autoSave(el=>{
+
+  w.set(path,el.textContent)
+
+  makeMenu(el) 
+})
 
 function makeMenu(el){
   const isShapes = (d) => /^##+/.test(d);  
